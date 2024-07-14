@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/image/android-chrome-192x192.png">
+    <title>Gabriela 🤍</title>
+    <style>
+        /* Global styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Dancing Script', cursive;
+            background: linear-gradient(to bottom, #f2e6ff, #e6ccff);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #typing-text {
+            font-size: 1.5em;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 0.15em solid #cc99ff;
+            animation: typing 3s steps(80, end), blink-caret 0.75s step-end infinite;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #663399;
+        }
+
+        #click-info {
+            text-align: center;
+            margin-top: 120px;
+            font-size: 0.8em;
+            color: #800080;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* Media queries */
+        @media (max-width: 768px) {
+            /* Mobile styles */
+            body {
+                background: linear-gradient(to bottom, #f2e6ff, #e6ccff);
+                padding: 20px;
+            }
+
+            #typing-text {
+                font-size: 1.2em;
+                padding: 15px;
+            }
+
+            #click-info {
+                font-size: 0.7em;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            /* Tablet styles */
+            body {
+                background: linear-gradient(to bottom, #f2e6ff, #e6ccff);
+                padding: 30px;
+            }
+
+            #typing-text {
+                font-size: 1.4em;
+                padding: 20px;
+            }
+
+            #click-info {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            /* Desktop styles */
+            body {
+                background: linear-gradient(to bottom, #f2e6ff, #e6ccff);
+                padding: 40px;
+            }
+
+            #typing-text {
+                font-size: 1.6em;
+                padding: 25px;
+            }
+
+            #click-info {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="myAudio" loop>
+        <source src="audio/audio.mp3" type="audio/mpeg">
+    </audio>
+    <div id="typing-text"></div>
+    <div id="click-info">Click On the BOX.</div>
+
+    <script>
+        const texts = [
+            "Halo, Gabriela Marry Christiana Simanjuntak", 
+            "You're my favorite person",
+            "if you see this", 
+            "i wanna say that",
+            "I love yo so much <3.",
+            "Each day I love you more.",
+            "To be with you, that's all I want.",
+            "I love you wildly, insanely, infinitely",
+            "How lucky i am to have u. ",
+            "I will always be grateful", 
+            "to have you in my life.",
+            "Thankyou for showing me",
+            "that there are people like you in this world."
+        ];
+
+        let currentTextIndex = 0;
+        const typingTextElement = document.getElementById("typing-text");
+
+        function typeWriter() {
+            if (currentTextIndex < texts.length) {
+                typingTextElement.textContent = texts[currentTextIndex].slice(0, typingTextElement.textContent.length + 1);
+                setTimeout(typeWriter, 100); 
+            }
+        }
+
+        typingTextElement.addEventListener("click", () => {
+            currentTextIndex = (currentTextIndex + 1) % texts.length;
+            typingTextElement.textContent = ""; typeWriter();
+        });
+        
+        const audio = document.getElementById("myAudio");
+        audio.play(); 
+        
+
+        typeWriter(); 
+    </script>
+</body>
+</html>
